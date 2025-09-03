@@ -47,16 +47,71 @@ class Empolyeecontroller extends Controller
 
         $created = Employee::create($data);
 
-        if($created){
-        return redirect()->route('employee.create')->with('failure','something went wrong');
+        if ($created) {
+            return redirect()->route('employee.create')->with('failure', 'something went wrong');
 
-            return redirect()->route('employee.index')->with('success','employee added ');
+            return redirect()->route('employee.index')->with('success', 'employee added ');
         }
 
         // return [$name,$age,$email,$phone,$designation,$salary,$joining_date,$address];
     }
-    public function edit() {}
-    public function update() {}
+    public function edit($id)
+    {
+        $employee = Employee::find($id);
+        if (!$employee) {
+            return "Data Not found!";
+        }
+
+        return view('employee.edit', compact('employee'));
+    }
+    public function update(Request $request, $id)
+    {
+        $employee = Employee::find($id);
+        if (!$employee) {
+            return "Data Not found!";
+        }
+
+        // return $request;
+        $request->validate([
+            'name' => 'required',
+            'age' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'designation' => 'required',
+
+            'address' => 'required',
+        ]);
+
+
+        $data = [
+            'name' => $request->name,
+            'age' => $request->age,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'designation' => $request->designation,
+            'salary' => $request->salary,
+            'address' => $request->address,
+            'joining_date' => $request->joining_date,
+
+        ];
+
+        $updated = $employee->update($data);
+
+        if ($updated) {
+            return redirect()->route('employee.index')->with('success', 'employee Updated ');
+        }
+    }
     public function show() {}
-    public function delete() {}
+    public function destroy(Request $request, $id)
+    {
+        $employee = Employee::find($id);
+        if (!$employee) {
+            return "Data Not found!";
+        }
+        $deleted = $employee->delete();
+        if ($deleted) {
+            return redirect()->route('employee.index')->with('success', 'employee Deleted ');
+        }
+        return redirect()->route('employee.index')->with('failure', 'Unable to delete');
+    }
 }

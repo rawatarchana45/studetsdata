@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        *
-        {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         h1 {
 
             /* flex-grow: 1; */
@@ -27,7 +27,7 @@
 
         th,
         td {
-         border: 1px solid #ccc;
+            border: 1px solid #ccc;
             padding: 10px;
             text-align: left;
             vertical-align: middle;
@@ -61,18 +61,19 @@
             border-radius: 20px;
             /* display: inline-block; */
         }
-        .buttons span
-        {
+
+        .buttons span {
             font-weight: bold !important;
             font-size: 18px !important;
         }
-        .session{
+
+        .session {
             color: white;
-            font-size: 2
-            0px;
+            font-size: 2 0px;
 
         }
-        .message{
+
+        .message {
             color: pink;
         }
     </style>
@@ -82,10 +83,10 @@
     <div class="container">
         <h1>Employee detalis</h1>
         {{-- <button>add data</button> --}}
-        {{-- @if(session('success'))
+        {{-- @if (session('success'))
             <span class="session">{{ session('success') }}</span>
         @endif --}}
-        @if(session('failure'))
+        @if (session('failure'))
             <span class="message">{{ session('failure') }}</span>
         @endif
         <a href="{{ route('employee.create') }}" class="buttons"> <span>+</span>
@@ -111,8 +112,13 @@
                     <td>{{ $empolyee->designation }}</td>
                     <td>{{ $empolyee->phone }}</td>
                     <td><button>Show</button>
-                        <button>Update</button>
-                        <button>Delete</button>
+                        {{-- dyna,mic route me parametere kaise bhejna h --}}
+                        <a href="{{ route('employee.edit', $empolyee->id) }}">Edit</a>
+                        {{-- {{ route('routeName', ['id' => $emp0loyee->id, 'name' => $employe->name]) }} --}}
+
+                        <a
+                            href="{{ route('employee.delete', ['recordId' => 'archna','username'=>'anmol' ,'id' => $empolyee->id]) }}">Delete</a>
+                        {{-- employee/delete/1 --}}
 
                     </td>
                 </tr>
@@ -123,10 +129,10 @@
 
     </table>
 
-    @if(session('success'))
-    <script>
-        alert('{{ session('success') }}')
-    </script>
+    @if (session('success'))
+        <script>
+            alert('{{ session('success') }}')
+        </script>
     @endif
 
 </body>

@@ -4,6 +4,7 @@ use App\Http\Controllers\DbController;
 use App\Http\Controllers\Empolyeecontroller;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController;
 
@@ -91,15 +92,17 @@ use App\Http\Controllers\WebController;
 // Route::get('subjects',[FileController::class,'subject']);
 
 
-Route::get('/', [Empolyeecontroller::class,'index']);
+// Route::get('/', [Empolyeecontroller::class, 'index']);
 
-Route::get('employee/index', [Empolyeecontroller::class,'index'])->name('employee.index');
-Route::get('employee/create', [Empolyeecontroller::class,'create'])->name('employee.create');
-Route::post('employee/store', [Empolyeecontroller::class,'store'])->name('employee.store');
-Route::get('employee/edit', [Empolyeecontroller::class,'edit'])->name('employee.edit');
-Route::post('employee/update', [Empolyeecontroller::class,'update'])->name('employee.update');
-Route::get('employee/delete', [Empolyeecontroller::class,'destroy'])->name('employee.delete');
+// Route::get('employee/index', [Empolyeecontroller::class, 'index'])->name('employee.index');
+// Route::get('employee/create', [Empolyeecontroller::class, 'create'])->name('employee.create');
+// Route::post('employee/store', [Empolyeecontroller::class, 'store'])->name('employee.store');
+// Route::get('employee/edit/{id}', [Empolyeecontroller::class, 'edit'])->name('employee.edit');
+// Route::put('employee/update/{id}', [Empolyeecontroller::class, 'update'])->name('employee.update');
+// // Route::delete('employee/delete/{id}', [Empolyeecontroller::class, 'destroy'])->name('employee.delete');
+// Route::get('employee/delete/{id}', [Empolyeecontroller::class, 'destroy'])->name('employee.delet');
 
-
+Route::get('student',[StudentsController::class,'students']);
+Route::post('student',[StudentsController::class,'data']);
 
 
